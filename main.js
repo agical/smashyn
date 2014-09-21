@@ -1,8 +1,5 @@
-define(['tester!dep1', 'dep2'], function(dep1, dep2) {
-    return {
-        test: {
-            'Testing dep2': function() {return dep2()=='Dep 2 ready';}
-        },
-        result: dep2
-    }
+define(['tester!square', 'tester!multiplication'], function(square, multiplication) {
+    console.log(__filename, "Final Square:", square);
+    console.log(__filename, "Final multi:", multiplication);
+    return square;
 });

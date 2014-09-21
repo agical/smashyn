@@ -1,13 +1,13 @@
 define([], function() {
     return {
         load: function (name, req, onload, config) {
-            //req has the same API as require().
             req([name], function (value) {
-                console.log("\nValue:", value);
-                onload(value.result);
+                console.log(__filename, "\nTo test:", value);
+                console.log(__filename, "\nonload:", onload);
+                onload.fromText(value);
             },
             function(err) {
-                console.log("Err:", err);
+                console.log(__filename, "Err:", err);
             });
         }
     }});

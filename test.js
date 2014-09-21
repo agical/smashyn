@@ -4,7 +4,13 @@ console.log(curl);
 curl.config({
         baseUrl: __dirname,
         paths: {
-             app: 'main.js'
+            app  : 'main.js',
+            lodash: 'node_modules/lodash/lodash',
+            lodash: 'node_modules/q/q',
+
+        },
+        plugins: {
+             tester: '../../tester.js'            
         }
     });
 curl(['app']).then(start, fail);

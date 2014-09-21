@@ -1,6 +1,6 @@
 define([], function() {
     return {
-        test: { 'All is well': function() {return true;}},
-        result: {some: "stuff"}
+        test: { 'Multiply': function(eq) {return eq(2*3, 6)} },
+        result: 
     }
 });

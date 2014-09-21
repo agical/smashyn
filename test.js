@@ -16,11 +16,11 @@ curl.config({
 curl(['app']).then(start, fail);
 
 function start() {
-    console.log("STARTING:");
+    console.log("Done");
 }
 
 function fail(ex) {
-    console.log(ex);
+    console.log("Something went wrong:", ex);
 }
 
 

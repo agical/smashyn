@@ -6,7 +6,7 @@ curl.config({
         paths: {
             app  : 'main.js',
             lodash: 'node_modules/lodash/lodash',
-            lodash: 'node_modules/q/q',
+            q: 'node_modules/q/q',
             multiplication: 'src/multiplication',
             multiplication_test: 'test/multiplication_test',
             square: 'src/square',
@@ -14,7 +14,7 @@ curl.config({
             
         },
         plugins: {
-             tester: '../../tester.js'            
+             prereq: '../../tester.js'            
         }
     });
 curl(['app']).then(start, fail);

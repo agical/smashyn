@@ -6,15 +6,22 @@ curl.config({
         paths: {
             app  : 'main.js',
             lodash: 'node_modules/lodash/lodash',
-            q: 'node_modules/q/q',
             multiplication: 'src/multiplication',
             multiplication_test: 'test/multiplication_test',
             square: 'src/square',
-            square_test: 'test/square_test'
-            
+            square_test: 'test/square_test',
+            report: 'results'
         },
+        packages: [
+            {
+                name: 'when',
+                location: 'node_modules/when',
+                main: 'when'
+            }
+        ]
+        ,
         plugins: {
-             prereq: '../../tester.js'            
+             prereq: '../../prereq.js'            
         }
     });
 curl(['app']).then(start, fail);

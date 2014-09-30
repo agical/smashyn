@@ -10,7 +10,7 @@ curl.config({
             multiplication_test: 'test/multiplication_test',
             square: 'src/square',
             square_test: 'test/square_test',
-            report: 'results'
+            report: 'console_log_results'
         },
         packages: [
             {

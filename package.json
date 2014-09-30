@@ -4,7 +4,7 @@
   "description": "Show-case using Abstract Module Definition to run tests with dependencies.",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node example/run_test.js"
   },
   "keywords": [
     "testing",

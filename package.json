@@ -1,7 +1,7 @@
 {
   "name": "amd-testing",
   "version": "0.0.1",
-  "description": "Show-case using Asynchronous Module Definition to run tests with dependencies.",
+  "description": "Using Asynchronous Module Definition and a plugin to run tests, possibly with dependencies on other tests",
   "main": "curl/plugin/prereq.js",
   "scripts": {
     "test": "node example/run_test.js"

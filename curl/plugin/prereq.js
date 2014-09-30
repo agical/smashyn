@@ -1,17 +1,4 @@
-define(['lodash', 'report', 'when'], function(_, report, when) {
-    var eq = function(module, scenario) {
-        return function(a, b, desc) {                        
-            var ret = {'module':module, 'scenario':scenario, 'check':desc, type:'equals', 'a':a, 'b':b};
-            if(a===b) {
-                report.check_passed(ret);
-                return true;
-            } else {
-                ret['error'] = 'Not equal';
-                report.check_failed(ret);
-                throw ret; 
-            };
-        };
-    };
+define(['lodash', 'report', 'when', 'checks'], function(_, report, when, checks) {
 
     return {
         load: function (module, req, onload, config) {
@@ -21,7 +8,7 @@ define(['lodash', 'report', 'when'], function(_, report, when) {
                     var scen_d = when.defer();
                     var spec = {'module':module, 'scenario':scenario};
                     report.scenario_started(spec);
-                    when(test_fn(eq(module,scenario)))
+                    when(test_fn(checks(module,scenario, report)))
                         .done(function() {
                             report.scenario_passed(spec);
                             scen_d.resolve(spec);

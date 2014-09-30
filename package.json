@@ -1,8 +1,8 @@
 {
   "name": "amd-testing",
   "version": "0.0.1",
-  "description": "Show-case using Abstract Module Definition to run tests with dependencies.",
-  "main": "index.js",
+  "description": "Show-case using Asynchronous Module Definition to run tests with dependencies.",
+  "main": "curl/plugin/prereq.js",
   "scripts": {
     "test": "node example/run_test.js"
   },

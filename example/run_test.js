@@ -19,10 +19,6 @@ curl.config({
                 main: 'when'
             }
         ]
-        ,
-        plugins: {
-             prereq: '../../../prereq.js'            
-        }
     });
 curl(['app']).then(start, fail);
 

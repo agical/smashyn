@@ -20,6 +20,7 @@ define(['lodash', 'report', 'when'], function(_, report, when) {
                 var result = _.reduce(value.test, function(acc, test_fn, scenario) {
                     var scen_d = when.defer();
                     var spec = {'module':module, 'scenario':scenario};
+                    report.scenario_started(spec);
                     when(test_fn(eq(module,scenario)))
                         .done(function() {
                             report.scenario_passed(spec);

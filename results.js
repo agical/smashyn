@@ -4,13 +4,16 @@ define([], function() {
             console.log(obj.module, 'started...');
         },
         module_passed: function(obj) {
-            console.log(obj.module, ' OK!');
+            console.log(obj.module, 'OK!');
+        },
+        scenario_started: function(obj) {
+            console.log("    ", obj.scenario, 'started...');
         },
         scenario_passed: function(obj) {
-            console.log("  ", obj.scenario);
+            console.log("    ", obj.scenario, 'OK!');
         },
         check_passed: function(obj) {
-            console.log("    ", obj.check);
+            console.log("       ", obj.check);
         },
         module_failed: function(obj) {
             console.log("**", "FAILED:", obj.module, ' Reason: ', obj.error);

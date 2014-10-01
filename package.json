@@ -1,5 +1,5 @@
 {
-  "name": "amd-testing",
+  "name": "smashyn",
   "version": "0.0.1",
   "description": "Using Asynchronous Module Definition and a plugin to run tests, possibly with dependencies on other tests",
   "main": "curl/plugin/prereq.js",

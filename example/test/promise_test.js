@@ -6,9 +6,11 @@ define(['when'], function(when) {
     return {
         test: {
             'Random timeout': function(c) {
-                var def = when.defer();
-                setTimeout(def.resolve, getRandomInt(1,500));
-                return def.deferred;
+                var d1 = when.defer();
+                var d2 = when.defer();
+                setTimeout(function() {d1.resolve(7);}, getRandomInt(1,100));
+                setTimeout(function() {d2.resolve(7);}, getRandomInt(1,100));
+                return c.eq(d1.promise, d2.promise, "Comparing promises results");
             }
         },
         result: true

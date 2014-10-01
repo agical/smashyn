@@ -6,3 +6,4 @@ define(['prereq!multiplication_test', 'square'], function(multiplication_test, s
         result: square
     }
 });
+

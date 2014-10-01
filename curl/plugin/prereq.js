@@ -8,12 +8,12 @@ define(['lodash', 'report', 'when', 'checks'], function(_, report, when, checks)
                     var scen_d = when.defer();
                     var spec = {'module':module, 'scenario':scenario};
                     report.scenario_started(spec);
-                    when(test_fn(checks(module,scenario, report)))
-                        .done(function() {
-                            report.scenario_passed(spec);
+                    when(checks(module,scenario, report), test_fn)
+                        .then(function() {
+                             report.scenario_passed(spec);
                             scen_d.resolve(spec);
-                        }, function(e) {
-                            spec['error']=e;
+                        }).otherwise(function(e) {
+                             spec['error']=e;
                             report.scenario_failed(spec);
                             scen_d.reject(spec);
                         });
@@ -25,7 +25,7 @@ define(['lodash', 'report', 'when', 'checks'], function(_, report, when, checks)
                 when.all(_.values(result)).done(function() {                    
                     report.module_passed(mspec);
                     onload(value.result);                                    
-                }, function(vals, e) {  
+                }, function(e) {  
                     mspec['error'] = e;
                     report.module_failed(mspec);
                     onload.error(mspec);

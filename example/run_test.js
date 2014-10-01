@@ -10,6 +10,7 @@ curl.config({
             multiplication_test: 'test/multiplication_test',
             square: 'src/square',
             square_test: 'test/square_test',
+            promise_test: 'test/promise_test',
             report: '../src/console_log_results',
             checks: '../src/checks'
         },

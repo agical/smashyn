@@ -22,7 +22,7 @@ Check out the example for a possible setup for running tests.
 The tests/prerequisites
 -------
 
-The tests can be synchronous or they can be asyncronous, returning a promise. 
+The tests can be synchronous or they can be asynchronous, returning a promise. 
 
 A synchronous tests that throws an exception is a failed test, otherwise it is successful.
 

@@ -1,7 +1,7 @@
 Smashyn
 =======
 
-Pre-alpha. Things will changes. That said, please try it out and give feedback.
+Pre-alpha. Things will change. That said, please try it out and give feedback.
 
 Smashyn uses Asynchronous Module Definition (AMD) as an async testrunner for possibly dependent tests.
 

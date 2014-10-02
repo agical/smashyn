@@ -24,7 +24,7 @@ The tests/prerequisites
 
 The tests can be synchronous or they can be asynchronous, returning a promise. 
 
-A synchronous tests that throws an exception is a failed test, otherwise it is successful.
+A synchronous test that throws an exception is a failed test, otherwise it is successful.
 
 An asynchronous test fails if the promise returned is rejected, and otherwise it is successful. 
 

@@ -22,7 +22,7 @@ define(['lodash', 'when'], function(_, when) {
         return {
             eq: function(a, b, desc) {   
                 return when.isPromiseLike(a) || when.isPromiseLike(b) || when.isPromiseLike(desc)
-                    ? when.all([a,b, desc]).spread(eqfn)
+                    ? when.attempt(eqfn, a,b, desc)
                     : eqfn(a, b, desc);
             }
         };

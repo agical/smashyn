@@ -12,7 +12,7 @@ define(['lodash', 'when', 'report', 'checks'], function(_, when, report, checks)
             var spec = {'scenario':scenario, 'module':tob.module};
             report.scenario_started(spec);
 
-            when(checks(tob.module, scenario, report), test_fn)
+            when.attempt(test_fn, checks(tob.module, scenario, report))
                 .then(function() {
                     report.scenario_passed(spec);
                     scen_d.resolve(spec);

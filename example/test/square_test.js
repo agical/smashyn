@@ -1,9 +1,14 @@
-define(['prereq!multiplication_test', 'square'], function(multiplication_test, square) {
-    return {
-        test: {
-            'Square': function(c) {return c.eq(square(3), 9, "Square positive number");}
-        },
-        result: square
-    }
+define(['square', 'smashyn', 'multiplication_test'], function( square, smashyn) {
+    return smashyn(
+        {
+            module: 'Square',
+            scenarios: {
+                'Square': function(c) {
+                    return c.eq(square(3), 9, "Square positive number");
+                },
+            },
+            result: square
+        }
+    );
 });
 

@@ -1,10 +1,11 @@
-define(['when'], function(when) {
+define(['when', 'smashyn'], function(when, smashyn) {
     function getRandomInt (min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    };
 
-    return {
-        test: {
+    return smashyn({
+        module: 'Promise test',
+        scenarios: {
             'Random timeout': function(c) {
                 var d1 = when.defer();
                 var d2 = when.defer();
@@ -14,5 +15,5 @@ define(['when'], function(when) {
             }
         },
         result: true
-    }
+    });
 });

@@ -12,7 +12,8 @@ curl.config({
             square_test: 'test/square_test',
             promise_test: 'test/promise_test',
             report: '../src/console_log_results',
-            checks: '../src/checks'
+            checks: '../src/checks',
+            smashyn: '../src/smashyn'
         },
         packages: [
             {
@@ -25,7 +26,7 @@ curl.config({
 curl(['app']).then(start, fail);
 
 function start() {
-    console.log(__filename, "Done");
+    // No need to do anything
 }
 
 function fail(ex) {

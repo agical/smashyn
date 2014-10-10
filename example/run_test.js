@@ -1,14 +1,13 @@
-
 var curl = require('../node_modules/curl-amd/dist/curl-for-ssjs/curl');
 
-curl.config({
+var conf = {
         baseUrl: __dirname,
         paths: {
-            app  : 'main.js',
+            //app  : 'main.js',
             lodash: '../node_modules/lodash/lodash',
             multiplication: 'src/multiplication',
-            multiplication_test: 'test/multiplication_test',
             square: 'src/square',
+            multiplication_test: 'test/multiplication_test',
             square_test: 'test/square_test',
             promise_test: 'test/promise_test',
             report: '../src/console_log_results',
@@ -22,8 +21,15 @@ curl.config({
                 main: 'when'
             }
         ]
-    });
-curl(['app']).then(start, fail);
+    };
+
+curl.config(conf);
+
+define("app", ['lodash', 'when', 'square_test', 'promise_test'], function(_, when, square_test, promise_test) {
+    when.settle(square_test, promise_test).done(console.log);
+});
+
+curl("app").then(start, fail);
 
 function start() {
     // No need to do anything

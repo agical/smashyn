@@ -13,10 +13,10 @@ define(['lodash', 'when', 'report', 'checks'], function(_, when, report, checks)
             report.scenario_started(spec);
 
             when.attempt(test_fn, checks(tob.module, scenario, report))
-                .then(function() {
+                .done(function() {
                     report.scenario_passed(spec);
-                    scen_d.resolve(spec);
-                }).otherwise(function(e) {
+                    return spec;
+                },function(e) {
                     spec['error']=e;
                     report.scenario_failed(spec);
                     scen_d.reject(spec);
@@ -27,13 +27,13 @@ define(['lodash', 'when', 'report', 'checks'], function(_, when, report, checks)
         }, {});
 
 
-        return when.all(_.values(result)).then(function() {                    
+        return when.settle(_.values(result)).then(function() {                    
             report.module_passed(mspec);
             return tob.result;                                    
         }, function(e) {  
             mspec['error'] = e;
             report.module_failed(mspec);
-            throw e;
+            return when.reject(e);
         });
     };
 

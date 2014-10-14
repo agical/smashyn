@@ -4,8 +4,12 @@ var _ = require('./node_modules/lodash/lodash');
 
 var curl = require('./node_modules/curl-amd/dist/curl-for-ssjs/curl');
 
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
 
-var walk = function(dir, done) {
+
+function walk(dir, done) {
   var results = [];
   fs.readdir(dir, function(err, list) {
     if (err) return done(err);
@@ -31,6 +35,10 @@ var walk = function(dir, done) {
 var baseconf = {
     baseUrl: __dirname,
     testRoot: 'example/test',
+    includeTestfileFn: function(p) {
+            return endsWith(p, ".js") &&
+            p.indexOf('.#')===-1;
+        },
     paths: {
         lodash: 'node_modules/lodash',
         multiplication: 'example/src/multiplication',
@@ -38,10 +46,6 @@ var baseconf = {
         report: 'src/console_log_results',
         checks: 'src/checks',
         smashyn: 'src/smashyn',
-        //app  : 'main.js',
-        //multiplication_test: 'test/multiplication_test',
-        //square_test: 'test/square_test',
-        //promise_test: 'test/promise_test',
     },
     packages: [
         {
@@ -56,16 +60,9 @@ var baseconf = {
 walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
     if (err) throw err;
 
-    function endsWith(str, suffix) {
-        return str.indexOf(suffix, str.length - suffix.length) !== -1;
-    }
-
     var tests = 
         _.chain(results)
-        .filter(function(p) {
-            return endsWith(p, ".js") &&
-            p.indexOf('.#')===-1;
-        })
+        .filter(baseconf.includeTestfileFn)
         .map(function(p) {
             return {
                 name: path.basename(p, '.js'),
@@ -74,11 +71,11 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
         }).value();
     
     _.each(tests, function(desc) {
-        console.log(desc);
         baseconf.paths[desc.name] = desc.path;
     });
 
-    console.log(baseconf);
+    console.log("Using config:", baseconf);
+
     curl.config(baseconf);
 
     var paramArr = _.reduce(tests, function(acc, elem) {
@@ -86,11 +83,8 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
         return acc;
     }, ['when']);
 
-    console.log(paramArr);
-
     define("app", paramArr, 
            function(when) {
-        console.log(args);
         //when.settle(modules).done(console.log);
     });
 

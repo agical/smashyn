@@ -35,11 +35,11 @@ function walk(dir, done) {
 var baseconf = {
     baseUrl: __dirname,
     testRoot: 'example/test',
-    includeTestfileFn: function(p) {
+    includeTestFileFn: function(p) {
             return endsWith(p, ".js") &&
             p.indexOf('.#')===-1;
         },
-    testFileMapping: function(p) {
+    testFileMappingFn: function(p) {
             return {
                 name: path.basename(p, '.js'),
                 path: p
@@ -68,8 +68,8 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
 
     var tests = 
         _.chain(results)
-        .filter(baseconf.includeTestfileFn)
-        .map(baseconf.testFileMapping).value();
+        .filter(baseconf.includeTestFileFn)
+        .map(baseconf.testFileMappingFn).value();
     
     _.each(tests, function(desc) {
         baseconf.paths[desc.name] = desc.path;

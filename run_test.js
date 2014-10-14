@@ -39,6 +39,12 @@ var baseconf = {
             return endsWith(p, ".js") &&
             p.indexOf('.#')===-1;
         },
+    testFileMapping: function(p) {
+            return {
+                name: path.basename(p, '.js'),
+                path: p
+            };
+        },
     paths: {
         lodash: 'node_modules/lodash',
         multiplication: 'example/src/multiplication',
@@ -63,18 +69,11 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
     var tests = 
         _.chain(results)
         .filter(baseconf.includeTestfileFn)
-        .map(function(p) {
-            return {
-                name: path.basename(p, '.js'),
-                path: p
-            };
-        }).value();
+        .map(baseconf.testFileMapping).value();
     
     _.each(tests, function(desc) {
         baseconf.paths[desc.name] = desc.path;
     });
-
-    console.log("Using config:", baseconf);
 
     curl.config(baseconf);
 
@@ -88,7 +87,6 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
         //when.settle(modules).done(console.log);
     });
 
-
     curl("app").then(start, fail);
 
     function start() {
@@ -96,7 +94,7 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
     }
 
     function fail(ex) {
-        console.log(__filename, "Something went wrong:", ex);
+        console.log("Something went wrong (",  __filename, "):\n", ex, "\nUsed conf:\n", baseconf);
     }
 
 

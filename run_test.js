@@ -84,7 +84,6 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
 
     define("app", paramArr, 
            function(when) {
-        //when.settle(modules).done(console.log);
     });
 
     curl("app").then(start, fail);
@@ -94,7 +93,10 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
     }
 
     function fail(ex) {
-        console.log("Something went wrong (",  __filename, "):\n", ex, "\nUsed conf:\n", baseconf);
+        console.log("Something went wrong (",  __filename, "):\n", 
+                    ex, 
+                    "\nUsed conf:\n", 
+                    baseconf);
     }
 
 

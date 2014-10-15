@@ -7,22 +7,22 @@ define([], function() {
             console.log(obj.module, 'OK!');
         },
         scenario_started: function(obj) {
-            console.log(obj.module, obj.scenario, 'started...');
+            console.log('\t', obj.module, obj.scenario, 'started...');
         },
         scenario_passed: function(obj) {
-            console.log(obj.module, obj.scenario, 'OK!');
+            console.log('\t', obj.module, obj.scenario, 'OK!');
         },
         check_passed: function(obj) {
-            console.log(obj.module, obj.scenario, obj.check);
+            console.log('\t', '\t', obj.module, obj.scenario, obj.check);
         },
         module_failed: function(obj) {
             console.log("**", "FAILED:", obj.module, ' Reason: ', obj.error);
         },
         scenario_failed: function(obj) {
-            console.log("****", "FAILED:", obj.module, obj.scenario);
+            console.log('\t', "****", "FAILED:", obj.module, obj.scenario);
         },
         check_failed: function(obj) {
-            console.log("******", "FAILED:", obj.module, obj.scenario, obj.check);
+            console.log('\t', '\t', "******", "FAILED:", obj.module, obj.scenario, obj.check);
         },
         error: function(obj) {
             console.log("* GENERAL ERROR:\n", obj);

@@ -13,7 +13,6 @@
   "author": "Daniel Brolund",
   "license": "MIT",
   "dependencies": {
-    "consjs": "0.0.4",
     "curl-amd": "^0.8.10",
     "lodash": "^2.4.1",
     "q": "^1.0.1",

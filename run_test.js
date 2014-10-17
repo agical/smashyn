@@ -4,18 +4,11 @@ var path = require('path');
 
 var curl = require('./node_modules/curl-amd/dist/curl-for-ssjs/curl');
 
-function endsWith(str, suffix) {
-    return str.indexOf(suffix, str.length - suffix.length) !== -1;
-}
-
-
-
 var baseconf = {
     baseUrl: __dirname,
     testRoot: 'example/test',
     includeTestFileFn: function(p) {
-            return endsWith(p, ".js") &&
-            p.indexOf('.#')===-1;
+            return p.match(/.*.js$/);
         },
     testFileMappingFn: function(p) {
             return {

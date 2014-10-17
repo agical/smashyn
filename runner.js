@@ -1,7 +1,7 @@
-var _ = require('../node_modules/lodash/lodash');
-var curl = require('../node_modules/curl-amd/dist/curl-for-ssjs/curl');
+var _ = require('./node_modules/lodash/lodash');
+var curl = require('./node_modules/curl-amd/dist/curl-for-ssjs/curl');
 
-var walk = require('./walker').walk;
+var walk = require('./src/walker').walk;
 
 var path = require('path');
 

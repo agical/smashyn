@@ -3,17 +3,26 @@ var path = require('path');
 
 var conf = {
     baseUrl: __dirname,
+    // Directory for tests. All js 
+    // files in this directory tree
+    // will ne included by default:
     testRoot: 'test',
-//    includeTestFileFn: function(p) { ... match included test files ...} 
+    // Change included test files by including 
+    // the following function
+    // includeTestFileFn: function(p) { return true/false to match included test files ...} 
     paths: {
-        lodash: '../node_modules/lodash',
+        // Code to test
         multiplication: 'src/multiplication',
         square: 'src/square',
-// Can be configured
+        // Modules. Add your own. Smashyn requires lodash. 
+        lodash: '../node_modules/lodash',
+        // Smashyn runner
+        smashyn: '../smashyn',
+        // Smashyn utils, can be configured
         report: '../src/console_log_results',
         checks: '../src/checks',
-        smashyn: '../smashyn',
     },
+    // Smashyn also requires when
     packages: [
         {
             name: 'when',
@@ -23,4 +32,5 @@ var conf = {
     ]
 };
 
+// Execute tests in conf by loading them.
 run(conf);

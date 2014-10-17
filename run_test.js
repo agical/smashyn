@@ -4,15 +4,7 @@ var path = require('path');
 var conf = {
     baseUrl: __dirname,
     testRoot: 'example/test',
-    includeTestFileFn: function(p) {
-            return p.match(/.*.js$/);
-        },
-    testFileMappingFn: function(p) {
-            return {
-                name: path.basename(p, '.js'),
-                path: p
-            };
-        },
+//    includeTestFileFn: function(p) { ... match included test files ...} 
     paths: {
         lodash: 'node_modules/lodash',
         multiplication: 'example/src/multiplication',

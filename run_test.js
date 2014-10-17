@@ -1,6 +1,6 @@
-var fs = require('fs');
-var path = require('path');
 var _ = require('./node_modules/lodash/lodash');
+var walk = require('./src/walker').walk;
+var path = require('path');
 
 var curl = require('./node_modules/curl-amd/dist/curl-for-ssjs/curl');
 
@@ -9,28 +9,6 @@ function endsWith(str, suffix) {
 }
 
 
-function walk(dir, done) {
-    var results = [];
-    fs.readdir(dir, function(err, list) {
-        if (err) return done(err);
-        var pending = list.length;
-        if (!pending) return done(null, results);
-        list.forEach(function(file) {
-            file = dir + '/' + file;
-            fs.stat(file, function(err, stat) {
-                if (stat && stat.isDirectory()) {
-                    walk(file, function(err, res) {
-                        results = results.concat(res);
-                        if (!--pending) done(null, results);
-                    });
-                } else {
-                    results.push(file);
-                    if (!--pending) done(null, results);
-                }
-            });
-        });
-    });
-};
 
 var baseconf = {
     baseUrl: __dirname,
@@ -82,9 +60,7 @@ walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
         return acc;
     }, ['when']);
 
-    define("app", paramArr, 
-           function(when) {
-    });
+    define("app", paramArr, function() {});
 
     curl("app").then(start, fail);
 

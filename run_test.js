@@ -1,10 +1,7 @@
-var _ = require('./node_modules/lodash/lodash');
-var walk = require('./src/walker').walk;
+var run = require('./src/runner').run;
 var path = require('path');
 
-var curl = require('./node_modules/curl-amd/dist/curl-for-ssjs/curl');
-
-var baseconf = {
+var conf = {
     baseUrl: __dirname,
     testRoot: 'example/test',
     includeTestFileFn: function(p) {
@@ -33,43 +30,4 @@ var baseconf = {
     ]
 };
 
-
-walk(path.join(baseconf.baseUrl, baseconf.testRoot), function(err, results) {
-    if (err) throw err;
-
-    var tests = 
-        _.chain(results)
-        .filter(baseconf.includeTestFileFn)
-        .map(baseconf.testFileMappingFn).value();
-    
-    _.each(tests, function(desc) {
-        baseconf.paths[desc.name] = desc.path;
-    });
-
-    curl.config(baseconf);
-
-    var paramArr = _.reduce(tests, function(acc, elem) {
-        acc.push(elem.name);
-        return acc;
-    }, ['when']);
-
-    define("app", paramArr, function() {});
-
-    curl("app").then(start, fail);
-
-    function start() {
-        // No need to do anything
-    }
-
-    function fail(ex) {
-        console.log("Something went wrong (",  __filename, "):\n", 
-                    ex, 
-                    "\nUsed conf:\n", 
-                    baseconf);
-    }
-
-
-
-});
-
-
+run(conf);

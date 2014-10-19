@@ -1,5 +1,5 @@
 define(['lodash', 'when'], function(_, when) {
-    return function(mod, scen, rep) {
+    return function(mod, scen, rep, scen_p) {
 
         var module = mod, scenario=scen, report=rep;        
 
@@ -11,7 +11,7 @@ define(['lodash', 'when'], function(_, when) {
             } else {
                 ret['error'] = a + ' != ' + b;
                 report.check_failed(ret);
-                throw ret; 
+                scen_p.reject(ret);
             };
         };
 

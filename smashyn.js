@@ -32,8 +32,9 @@ define(['lodash', 'when', 'report', 'checks'], function(_, when, report, checks)
                 report.module_passed(mspec);
                 return mspec; 
             } else {
-                var failures = _.chain(result)
-                    .filter(function(r) {return r.state!=='fulfilled';})
+                //console.log("failures:", results);
+                var failures = _.chain(results)
+                    .filter(function(r) {return r.state==='rejected';})
                     .map(function(f) {return f.reason})
                     .value();
                 mspec['error'] = failures;
